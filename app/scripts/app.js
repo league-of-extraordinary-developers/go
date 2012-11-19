@@ -1,13 +1,15 @@
-'use strict';
+(function() {
+  var goApp;
 
-var goApp = angular.module('goApp', [])
-  .config(['$routeProvider', function($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
+  goApp = angular.module("goApp", []).config([
+    "$routeProvider", function($routeProvider) {
+      return $routeProvider.when("/", {
+        templateUrl: "views/main.html",
+        controller: "MainCtrl"
+      }).otherwise({
+        redirectTo: "/"
       });
-  }]);
+    }
+  ]);
+
+}).call(this);
