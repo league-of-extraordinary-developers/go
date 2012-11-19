@@ -17,6 +17,9 @@ module.exports = function( grunt ) {
 
     // Coffee to JS compilation
     coffee: {
+      options: {
+        bare: true
+      },
       compile: {
         files: {
           'app/scripts/*.js': 'app/scripts/**/*.coffee',
