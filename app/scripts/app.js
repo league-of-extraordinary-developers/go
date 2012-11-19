@@ -3,8 +3,8 @@ var goApp;
 goApp = angular.module("goApp", []).config([
   "$routeProvider", function($routeProvider) {
     return $routeProvider.when("/", {
-      templateUrl: "views/main.html",
-      controller: "MainCtrl"
+      templateUrl: "views/board.html",
+      controller: "Board"
     }).otherwise({
       redirectTo: "/"
     });
