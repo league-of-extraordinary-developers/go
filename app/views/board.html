@@ -1,8 +1,8 @@
 <div class="board">
+  <hr ng-style="pos(column)" class="line vertical" ng-repeat="column in columns"/>
+  <hr ng-style="pos(row)" class="line" ng-repeat="row in rows"/>
   <goishi class="white"></goishi>
   <goishi class="black"></goishi>
-  <hr class="line" ng-repeat="row in rows"/>
-  <hr class="vline" ng-repeat="column in columns"/>
   <!--SVG-->
 </div>
 <div class="control-panel">
