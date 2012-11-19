@@ -1,9 +1,14 @@
-<div class="hero-unit">
-  <h1>Cheerio!</h1>
-  <p>You now have</p>
+<div class="control-panel">
+  <h3>Active Games</h3>
   <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
+    <li ng-repeat="game in activeGames">{{game}}</li>
   </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
+  <h3>History</h3>
+  <ul>
+    <li ng-repeat="game in activeGames">{{game}}</li>
+  </ul>
+  <button>Take Move</button>
+</div>
+<div class="board">
+  <!--SVG-->
 </div>

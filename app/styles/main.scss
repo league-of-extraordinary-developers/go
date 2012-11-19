@@ -1,1 +1,26 @@
-@import "compass_twitter_bootstrap";
+/*@import "compass_twitter_bootstrap";*/
+
+.container {
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
+  -webkit-flex-align-items: stretch;
+
+  div {
+    padding: 5px;
+  }
+  .board {
+    -webkit-flex: 2;
+    -webkit-order: 2;
+    background: url(img/purty_wood.png) repeat-y;
+  }
+
+  .control-panel {
+    -webkit-flex: 1;
+    text-shadow: 0px -1px 0px #668337;
+    background: url(img/wood_1.png) repeat-x;
+    color: #fff;
+    -webkit-order: 1;
+    width: 15%;
+  }
+}
+
