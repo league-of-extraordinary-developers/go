@@ -11,8 +11,7 @@ for x in [0..defaultData.gridSize]
       top: "#{parseInt((100/(defaultData.gridSize+2)) * x,10)}%"
       left: "#{parseInt((100/(defaultData.gridSize+2)) * y,10)}%"
 
-
-goApp.controller "Board", ($scope) ->
+angular.module("controllers", []).controller("Board", ['$scope', ($scope) ->
   # Notice that chrome.storage.sync.get is asynchronous
   if chrome?.storage?
     chrome.storage.sync.get "go", (value) ->
@@ -47,3 +46,4 @@ goApp.controller "Board", ($scope) ->
     pc = parseInt((100/(data.gridSize+2)) * i,10)
     $scope.rows.push top: "#{pc}%"
     $scope.columns.push left: "#{pc}%"
+])

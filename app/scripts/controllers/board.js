@@ -17,55 +17,57 @@ for (x = _i = 0, _ref = defaultData.gridSize; 0 <= _ref ? _i <= _ref : _i >= _re
   }
 }
 
-goApp.controller("Board", function($scope) {
-  var data, i, pc, _k, _ref2, _results;
-  if ((typeof chrome !== "undefined" && chrome !== null ? chrome.storage : void 0) != null) {
-    chrome.storage.sync.get("go", function(value) {
-      return $scope.$apply(function() {
-        return $scope.load(value);
+angular.module("controllers", []).controller("Board", [
+  '$scope', function($scope) {
+    var data, i, pc, _k, _ref2, _results;
+    if ((typeof chrome !== "undefined" && chrome !== null ? chrome.storage : void 0) != null) {
+      chrome.storage.sync.get("go", function(value) {
+        return $scope.$apply(function() {
+          return $scope.load(value);
+        });
       });
-    });
-    $scope.save = function() {
-      return chrome.storage.sync.set({
-        go: $scope.data
-      });
+      $scope.save = function() {
+        return chrome.storage.sync.set({
+          go: $scope.data
+        });
+      };
+    }
+    $scope.load = function(value) {
+      return $scope.data = value != null ? value.go : defaultData;
     };
-  }
-  $scope.load = function(value) {
-    return $scope.data = value != null ? value.go : defaultData;
-  };
-  data = $scope.data || ($scope.data = defaultData);
-  $scope.pieces = data.positions;
-  $scope.pos = function(style) {
-    return style;
-  };
-  $scope.className = function(style) {
-    switch (style.owner) {
-      case 1:
-        return "white";
-      case -1:
-        return "black";
-      default:
-        return "";
+    data = $scope.data || ($scope.data = defaultData);
+    $scope.pieces = data.positions;
+    $scope.pos = function(style) {
+      return style;
+    };
+    $scope.className = function(style) {
+      switch (style.owner) {
+        case 1:
+          return "white";
+        case -1:
+          return "black";
+        default:
+          return "";
+      }
+    };
+    $scope.setPiece = function(row) {
+      if (row.owner === 0) {
+        row.owner = data.go;
+        return data.go = -data.go;
+      }
+    };
+    $scope.rows = [];
+    $scope.columns = [];
+    _results = [];
+    for (i = _k = 0, _ref2 = data.gridSize + 2; 0 <= _ref2 ? _k <= _ref2 : _k >= _ref2; i = 0 <= _ref2 ? ++_k : --_k) {
+      pc = parseInt((100 / (data.gridSize + 2)) * i, 10);
+      $scope.rows.push({
+        top: "" + pc + "%"
+      });
+      _results.push($scope.columns.push({
+        left: "" + pc + "%"
+      }));
     }
-  };
-  $scope.setPiece = function(row) {
-    if (row.owner === 0) {
-      row.owner = data.go;
-      return data.go = -data.go;
-    }
-  };
-  $scope.rows = [];
-  $scope.columns = [];
-  _results = [];
-  for (i = _k = 0, _ref2 = data.gridSize + 2; 0 <= _ref2 ? _k <= _ref2 : _k >= _ref2; i = 0 <= _ref2 ? ++_k : --_k) {
-    pc = parseInt((100 / (data.gridSize + 2)) * i, 10);
-    $scope.rows.push({
-      top: "" + pc + "%"
-    });
-    _results.push($scope.columns.push({
-      left: "" + pc + "%"
-    }));
+    return _results;
   }
-  return _results;
-});
+]);

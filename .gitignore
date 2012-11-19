@@ -2,3 +2,4 @@
 temp
 app/scripts/*.js
 app/styles/*.css
+dist/

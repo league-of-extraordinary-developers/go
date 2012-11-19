@@ -1,5 +1,4 @@
 /*@import "compass_twitter_bootstrap";*/
-@import "elements";
 
 body {
   margin: 0;
@@ -31,3 +30,4 @@ body {
   }
 }
 
+@import "_elements";
