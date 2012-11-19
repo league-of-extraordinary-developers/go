@@ -2,9 +2,11 @@ goishi {
   z-index: 9999;
   position: absolute;
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: 71px;
+  height: 71px;
   display: inline-block;
+  margin-top: 36px;
+  margin-left: 36px;
   &.black {
     background-color: #000;
     background-image: -webkit-radial-gradient(35% 35%, circle closest-corner, #666, black);
