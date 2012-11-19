@@ -1,0 +1,15 @@
+goishi {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: inline-block;
+  &.black {
+    background-color: #000;
+    background-image: -webkit-radial-gradient(35% 35%, circle closest-corner, #666, black);
+  }
+  &.white {
+    background-color: #fff;
+    background-image: -webkit-radial-gradient(35% 35%, circle closest-corner, white, #ccc);
+  }
+}
+
