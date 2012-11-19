@@ -14,16 +14,21 @@ for x in [0..defaultData.gridSize]
 angular.module("controllers", []).controller("Board", ['$scope', ($scope) ->
   # Notice that chrome.storage.sync.get is asynchronous
   if chrome?.storage?
+    console.log "found chrome storage"
     chrome.storage.sync.get "go", (value) ->
       $scope.$apply -> $scope.load value
 
     $scope.save = ->
+      console.log "saved"
       chrome.storage.sync.set go: $scope.data
 
   # If there is saved data in storage, use it. Otherwise, bootstrap with sample todos
   $scope.load = (value) ->
-    $scope.data = if value? then value.go else defaultData
+    $scope.data = value?.go? || defaultData
+    console.log "loaded", value
+    console.log $scope.data
 
+  $scope.load()
   data = $scope.data ||= defaultData
   $scope.pieces = data.positions
 
@@ -38,6 +43,7 @@ angular.module("controllers", []).controller("Board", ['$scope', ($scope) ->
     if row.owner == 0
       row.owner = data.go
       data.go = -data.go
+      $scope.save()
 
   $scope.rows = []
   $scope.columns = []

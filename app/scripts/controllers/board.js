@@ -21,20 +21,25 @@ angular.module("controllers", []).controller("Board", [
   '$scope', function($scope) {
     var data, i, pc, _k, _ref2, _results;
     if ((typeof chrome !== "undefined" && chrome !== null ? chrome.storage : void 0) != null) {
+      console.log("found chrome storage");
       chrome.storage.sync.get("go", function(value) {
         return $scope.$apply(function() {
           return $scope.load(value);
         });
       });
       $scope.save = function() {
+        console.log("saved");
         return chrome.storage.sync.set({
           go: $scope.data
         });
       };
     }
     $scope.load = function(value) {
-      return $scope.data = value != null ? value.go : defaultData;
+      $scope.data = ((value != null ? value.go : void 0) != null) || defaultData;
+      console.log("loaded", value);
+      return console.log($scope.data);
     };
+    $scope.load();
     data = $scope.data || ($scope.data = defaultData);
     $scope.pieces = data.positions;
     $scope.pos = function(style) {
@@ -53,7 +58,8 @@ angular.module("controllers", []).controller("Board", [
     $scope.setPiece = function(row) {
       if (row.owner === 0) {
         row.owner = data.go;
-        return data.go = -data.go;
+        data.go = -data.go;
+        return $scope.save();
       }
     };
     $scope.rows = [];

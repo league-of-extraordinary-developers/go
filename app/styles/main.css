@@ -1,1 +1,79 @@
-/* Will be compiled down to a single stylesheet with your sass files */
+/*@import "compass_twitter_bootstrap";*/
+/* line 3, ../../app/styles/main.scss */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 8, ../../app/styles/main.scss */
+.container {
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+/* line 20, ../../app/styles/main.scss */
+.container .board {
+  position: absolute;
+  height: 600px;
+  width: 600px;
+  background: url(img/purty_wood.png) repeat;
+}
+/* line 27, ../../app/styles/main.scss */
+.container .control-panel {
+  height: 30px;
+  color: #bada55;
+}
+
+/* line 1, ../../app/styles/_elements.scss */
+goishi {
+  z-index: 9999;
+  position: absolute;
+  border-radius: 50%;
+  width: 51px;
+  height: 51px;
+  display: inline-block;
+  margin-top: 26px;
+  margin-left: 26px;
+}
+/* line 10, ../../app/styles/_elements.scss */
+goishi.black {
+  background-color: #000;
+  background-image: -webkit-radial-gradient(35% 35%, circle closest-corner, #666666, black);
+}
+/* line 14, ../../app/styles/_elements.scss */
+goishi.white {
+  background-color: #fff;
+  background-image: -webkit-radial-gradient(35% 35%, circle closest-corner, white, #cccccc);
+}
+
+/* line 20, ../../app/styles/_elements.scss */
+.board {
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+/* line 24, ../../app/styles/_elements.scss */
+.board hr {
+  position: absolute;
+  margin: 0;
+}
+/* line 27, ../../app/styles/_elements.scss */
+.board hr.line {
+  border: none;
+  border-top: 1px solid black;
+  width: 100%;
+}
+/* line 33, ../../app/styles/_elements.scss */
+.board hr.vertical {
+  width: 1px;
+  border: none;
+  border-left: 1px solid black;
+  height: 100%;
+  /*-webkit-transform: rotate(90deg);*/
+  /*-webkit-transform-origin: top left;*/
+}
