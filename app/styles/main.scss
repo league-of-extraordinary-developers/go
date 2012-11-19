@@ -9,18 +9,17 @@
     padding: 5px;
   }
   .board {
-    -webkit-flex: 2;
+    -webkit-flex: 85%;
     -webkit-order: 2;
-    background: url(img/purty_wood.png) repeat-y;
+    background: url(img/purty_wood.png) repeat;
   }
 
   .control-panel {
-    -webkit-flex: 1;
-    text-shadow: 0px -1px 0px #668337;
-    background: url(img/wood_1.png) repeat-x;
-    color: #fff;
+    -webkit-flex: 15%;
     -webkit-order: 1;
-    width: 15%;
+    text-shadow: 0px -1px 0px #668337;
+    background: url(img/wood_1.png) repeat;
+    color: #fff;
   }
 }
 
