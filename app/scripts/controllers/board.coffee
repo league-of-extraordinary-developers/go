@@ -1,18 +1,31 @@
-data =
+defaultData =
   go: 1
   gridSize: 9
   positions: []
 
-for x in [0..data.gridSize]
-  for y in [0..data.gridSize]
-    data.positions[x] ||= []
-    data.positions[x][y] =
+for x in [0..defaultData.gridSize]
+  for y in [0..defaultData.gridSize]
+    defaultData.positions[x] ||= []
+    defaultData.positions[x][y] =
       owner: 0
-      top: "#{parseInt((100/(data.gridSize+2)) * x,10)}%"
-      left: "#{parseInt((100/(data.gridSize+2)) * y,10)}%"
+      top: "#{parseInt((100/(defaultData.gridSize+2)) * x,10)}%"
+      left: "#{parseInt((100/(defaultData.gridSize+2)) * y,10)}%"
 
 
 goApp.controller "Board", ($scope) ->
+  # Notice that chrome.storage.sync.get is asynchronous
+  if chrome?.storage?
+    chrome.storage.sync.get "go", (value) ->
+      $scope.$apply -> $scope.load value
+
+    $scope.save = ->
+      chrome.storage.sync.set go: $scope.data
+
+  # If there is saved data in storage, use it. Otherwise, bootstrap with sample todos
+  $scope.load = (value) ->
+    $scope.data = if value? then value.go else defaultData
+
+  data = $scope.data ||= defaultData
   $scope.pieces = data.positions
 
   $scope.pos = (style) -> style

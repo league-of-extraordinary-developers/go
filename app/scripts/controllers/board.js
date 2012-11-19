@@ -1,24 +1,40 @@
-var data, x, y, _base, _i, _j, _ref, _ref1;
+var defaultData, x, y, _base, _i, _j, _ref, _ref1;
 
-data = {
+defaultData = {
   go: 1,
   gridSize: 9,
   positions: []
 };
 
-for (x = _i = 0, _ref = data.gridSize; 0 <= _ref ? _i <= _ref : _i >= _ref; x = 0 <= _ref ? ++_i : --_i) {
-  for (y = _j = 0, _ref1 = data.gridSize; 0 <= _ref1 ? _j <= _ref1 : _j >= _ref1; y = 0 <= _ref1 ? ++_j : --_j) {
-    (_base = data.positions)[x] || (_base[x] = []);
-    data.positions[x][y] = {
+for (x = _i = 0, _ref = defaultData.gridSize; 0 <= _ref ? _i <= _ref : _i >= _ref; x = 0 <= _ref ? ++_i : --_i) {
+  for (y = _j = 0, _ref1 = defaultData.gridSize; 0 <= _ref1 ? _j <= _ref1 : _j >= _ref1; y = 0 <= _ref1 ? ++_j : --_j) {
+    (_base = defaultData.positions)[x] || (_base[x] = []);
+    defaultData.positions[x][y] = {
       owner: 0,
-      top: "" + (parseInt((100 / (data.gridSize + 2)) * x, 10)) + "%",
-      left: "" + (parseInt((100 / (data.gridSize + 2)) * y, 10)) + "%"
+      top: "" + (parseInt((100 / (defaultData.gridSize + 2)) * x, 10)) + "%",
+      left: "" + (parseInt((100 / (defaultData.gridSize + 2)) * y, 10)) + "%"
     };
   }
 }
 
 goApp.controller("Board", function($scope) {
-  var i, pc, _k, _ref2, _results;
+  var data, i, pc, _k, _ref2, _results;
+  if ((typeof chrome !== "undefined" && chrome !== null ? chrome.storage : void 0) != null) {
+    chrome.storage.sync.get("go", function(value) {
+      return $scope.$apply(function() {
+        return $scope.load(value);
+      });
+    });
+    $scope.save = function() {
+      return chrome.storage.sync.set({
+        go: $scope.data
+      });
+    };
+  }
+  $scope.load = function(value) {
+    return $scope.data = value != null ? value.go : defaultData;
+  };
+  data = $scope.data || ($scope.data = defaultData);
   $scope.pieces = data.positions;
   $scope.pos = function(style) {
     return style;
