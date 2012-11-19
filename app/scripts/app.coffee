@@ -1,6 +1,6 @@
 goApp = angular.module("goApp", []).config(["$routeProvider", ($routeProvider) ->
   $routeProvider.when("/",
-    templateUrl: "views/main.html"
-    controller: "MainCtrl"
+    templateUrl: "views/board.html"
+    controller: "Board"
   ).otherwise redirectTo: "/"
 ])
